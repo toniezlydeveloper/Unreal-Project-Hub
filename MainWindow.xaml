@@ -61,19 +61,19 @@
                                            Margin="0,4,0,8"/>
 								<StackPanel Grid.Row="2">
 									<UniformGrid Columns="3" Margin="0,0,0,6">
-										<Button Content="Open UE"
+										<Button Content="Launch Project"
                                                 Style="{StaticResource SecondaryActionButton}"
                                                 Margin="0,0,6,0"
                                                 Command="{Binding DataContext.OpenUnrealEngineCommand,
                               RelativeSource={RelativeSource AncestorType=Window}}"
                                                 CommandParameter="{Binding}"/>
-										<Button Content="Open VS"
+										<Button Content="Open IDE"
                                                 Style="{StaticResource SecondaryActionButton}"
                                                 Margin="0,0,6,0"
                                                 Command="{Binding DataContext.OpenIdeCommand,
                               RelativeSource={RelativeSource AncestorType=Window}}"
                                                 CommandParameter="{Binding}"/>
-										<Button Content="Open In Explorer"
+										<Button Content="Show In Explorer"
                                                 Style="{StaticResource SecondaryActionButton}"
                                                 Command="{Binding DataContext.OpenInExplorerCommand,
                               RelativeSource={RelativeSource AncestorType=Window}}"
