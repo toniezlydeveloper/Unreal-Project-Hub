@@ -1,0 +1,21 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <OutputType>WinExe</OutputType>
+    	<ApplicationIcon>Assets/Icon.ico</ApplicationIcon>
+        <TargetFramework>net8.0-windows</TargetFramework>
+        <RootNamespace>UnrealProjectHub</RootNamespace>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <UseWPF>true</UseWPF>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <None Remove="icon.ico" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Resource Include="Assets\Icon.ico" />
+    </ItemGroup>
+
+</Project>

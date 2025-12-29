@@ -1,0 +1,24 @@
+# .NET build output
+bin/
+obj/
+
+# Rider / JetBrains
+.idea/
+*.DotSettings.user
+*.user
+*.suo
+
+# NuGet
+*.nuget.g.props
+*.nuget.g.targets
+project.assets.json
+project.nuget.cache
+project.packagespec.json
+
+# Rider specific
+rider.project.model.nuget.info
+rider.project.restore.info
+
+# OS
+.DS_Store
+Thumbs.db
