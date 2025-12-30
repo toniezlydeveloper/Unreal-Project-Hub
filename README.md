@@ -1,38 +1,56 @@
 
 # Unreal Project Hub
+![Unreal Project Hub – project overview](assets/unreal-project-hub-overview.png)
 
-Unreal Project Hub is a lightweight Windows tool for managing and maintaining Unreal Engine projects from a single interface.
+Unreal Project Hub is a small Windows utility that helps you manage and maintain multiple Unreal Engine projects from a single place.
 
-## Overview
+It’s built to remove the repetitive friction of everyday Unreal development: cleaning projects, regenerating IDE files, and jumping between the editor, IDE, and folders.
 
-Unreal Engine projects often require repetitive maintenance tasks during development, such as cleaning build artifacts, regenerating IDE files, and navigating between the editor, IDE, and project folders.
+This is an internal-style developer tool, designed for speed and convenience rather than end-user polish.
 
-Unreal Project Hub consolidates these common operations into a single utility, reducing context switching and manual setup work.
+---
 
-The tool is designed as an internal-style project utility rather than a consumer-facing application.
+## Why This Exists
 
-## Features
+If you work with Unreal Engine regularly, you probably do this a lot:
 
-- Manage multiple Unreal Engine projects
-- Clean project build artifacts:
+- delete `Binaries` / `Intermediate` when something breaks  
+- regenerate project files after engine or plugin changes  
+- open the editor, then the IDE, then the project folder  
+- juggle multiple `.uproject` files across different projects  
+
+Unreal Project Hub puts all of that behind a single, repeatable UI, so common maintenance tasks take seconds instead of minutes.
+
+---
+
+## What You Can Do With It
+
+- Manage multiple Unreal projects in one list
+- Clean common build artifacts:
   - `.vs`
   - `Binaries`
   - `Intermediate`
   - `DerivedDataCache`
-- Regenerate IDE project files using UnrealBuildTool
-- Launch Unreal Editor directly from `.uproject`
-- Open IDE solution
-- Open project dictionary in Explorer
-- Persistent project list stored locally
-- Live logging operations in the UI
+- Regenerate IDE project files via UnrealBuildTool
+- Launch Unreal Editor directly from a `.uproject`
+- Open the IDE solution
+- Open the project folder in Explorer
+- Keep a persistent local project list
+- See live logs while operations are running
 
-## How It Works
+---
+
+## How It Works (High Level)
 
 - Engine installations are resolved from the `.uproject` `EngineAssociation`
-- IDE project files are regenerated via Unreal Engine’s official UnrealBuildTool
-- Running Unreal Editor instances are terminated before maintenance operations
-- All long-running tasks execute asynchronously with streamed log output
-- No Unreal Engine plugins or engine modifications are required
+- IDE files are regenerated using Unreal Engine’s official UnrealBuildTool
+- Any running Unreal Editor instances are closed before maintenance tasks
+- Long-running operations run asynchronously with streamed log output
+- No Unreal plugins, engine changes, or project modifications are required
+
+This tool operates entirely outside the engine.
+
+---
 
 ## Build & Run
 
@@ -50,20 +68,30 @@ dotnet build -c Release
 ```bash
 dotnet run -c Release
 ```
-Alternatively, download the release ZIP, extract it, and run `Unreal Project Hub.exe`
 
-## Usage
-1. Add one or more .uproject files to the project list
-2. Use project actions to:
-	- Open Unreal Editor
-	- Open the IDE solution
-	- Clean and regenerate project files
-3. View operation progress and output in the log panel
-4. Access project folders and Unreal Editor logs directly from the UI
+You can also download the release ZIP, extract it, and run:
 
-## Limitations / Notes
+```
+Unreal Project Hub.exe
+```
+
+---
+
+## Typical Usage
+
+1. Add one or more `.uproject` files to the project list
+2. Select a project and:
+   - open Unreal Editor
+   - open the IDE solution
+   - clean and regenerate project files
+3. Quickly access project folders and editor logs
+
+---
+
+## Scope & Limitations
 
 - Windows-only
-- Assumes standard Unreal Engine installation layout
-- Intended as a development utility, not a replacement for Epic Games Launcher
+- Assumes standard Unreal Engine installation layouts
+- Focused on developer workflows, not project configuration
+- Not a replacement for Epic Games Launcher
 - Not an official Epic Games product
