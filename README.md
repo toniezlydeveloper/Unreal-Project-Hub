@@ -1,6 +1,6 @@
 
 # Unreal Project Hub
-![Unreal Project Hub – project overview](assets/unreal-project-hub-overview.png)
+![Unreal Project Hub – Overview](Assets/Overview.png)
 
 Unreal Project Hub is a small Windows utility that helps you manage and maintain multiple Unreal Engine projects from a single place.
 
