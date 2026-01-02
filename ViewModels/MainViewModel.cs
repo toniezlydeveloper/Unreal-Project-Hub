@@ -3,8 +3,11 @@ using System.IO;
 using System.Text.Json;
 using System.Windows;
 using Microsoft.Win32;
+using UnrealProjectHub.Commands;
+using UnrealProjectHub.Models;
+using UnrealProjectHub.Services;
 
-namespace UnrealProjectHub;
+namespace UnrealProjectHub.ViewModels;
 
 public class MainViewModel
 {
@@ -16,7 +19,7 @@ public class MainViewModel
     public RelayCommand OpenUnrealEngineCommand { get; private set; }
     public RelayCommand OpenIdeCommand { get; private set; }
     public RelayCommand OpenInExplorerCommand { get; private set; }
-    public RelayCommand CleanAndLaunchCommand { get; private set; }
+    public RelayCommand RebuildAndLaunchCommand { get; private set; }
 
     private static readonly string CacheFile = Path.Combine(
         Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
@@ -31,14 +34,14 @@ public class MainViewModel
         SortProjects();
     }
 
-    private async Task SafeCleanAndLaunchAsync(UnrealProjectService service, ProjectEntry project)
+    private async Task SafeRebuildAndLaunchAsync(UnrealProjectService service, ProjectEntry project)
     {
         ClearLogs();
         Log("Starting operation...");
 
         try
         {
-            await CleanAndLaunchAsync(service, project);
+            await RebuildAndLaunchAsync(service, project);
         }
         catch (Exception caughtException)
         {
@@ -151,9 +154,9 @@ public class MainViewModel
         });
     }
 
-    private async Task CleanAndLaunchAsync(UnrealProjectService service, ProjectEntry project)
+    private async Task RebuildAndLaunchAsync(UnrealProjectService service, ProjectEntry project)
     {
-        await service.CleanRegenerateAndLaunchAsync(project.UProjectPath);
+        await service.RebuildAndLaunchAsync(project.UProjectPath);
     }
 
     private void OpenInExplorer(UnrealProjectService service, ProjectEntry project)
@@ -173,7 +176,7 @@ public class MainViewModel
 
     private void InitCommands(UnrealProjectService service)
     {
-        CleanAndLaunchCommand = new RelayCommand(project => _ = SafeCleanAndLaunchAsync(service, project));
+        RebuildAndLaunchCommand = new RelayCommand(project => _ = SafeRebuildAndLaunchAsync(service, project));
         OpenUnrealEngineCommand = new RelayCommand(project => OpenUnrealEngine(service, project));
         OpenInExplorerCommand = new RelayCommand(project => OpenInExplorer(service, project));
         OpenIdeCommand = new RelayCommand(project => OpenIde(service, project));

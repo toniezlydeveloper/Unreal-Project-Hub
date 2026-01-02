@@ -1,6 +1,6 @@
 ﻿using System.Windows.Input;
 
-namespace UnrealProjectHub;
+namespace UnrealProjectHub.Commands;
 
 public class SimpleCommand(Action execute) : ICommand
 {

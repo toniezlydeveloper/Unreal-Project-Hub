@@ -1,6 +1,7 @@
 ﻿using System.Windows.Input;
+using UnrealProjectHub.Models;
 
-namespace UnrealProjectHub;
+namespace UnrealProjectHub.Commands;
 
 public class RelayCommand(Action<ProjectEntry> execute, Func<ProjectEntry, bool>? canExecute = null) : ICommand
 {

@@ -1,16 +1,17 @@
-﻿namespace UnrealProjectHub
-{
-    public partial class MainWindow
-    {
-        public MainWindow()
-        {
-            InitializeComponent();
-            InitializeContext();
-        }
+﻿using UnrealProjectHub.ViewModels;
 
-        private void InitializeContext()
-        {
-            DataContext = new MainViewModel();
-        }
+namespace UnrealProjectHub;
+
+public partial class MainWindow
+{
+    public MainWindow()
+    {
+        InitializeComponent();
+        InitializeContext();
+    }
+
+    private void InitializeContext()
+    {
+        DataContext = new MainViewModel();
     }
 }

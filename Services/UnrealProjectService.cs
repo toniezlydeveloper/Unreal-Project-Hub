@@ -3,7 +3,8 @@ using System.IO;
 using System.Text.Json;
 using Microsoft.Win32;
 
-namespace UnrealProjectHub;
+namespace UnrealProjectHub.Services;
+
 public class UnrealProjectService(Action<string> log)
 {
     private static readonly string[] DirectoriesToClean = [".vs", "Binaries", "Intermediate", "DerivedDataCache"];
@@ -13,6 +14,8 @@ public class UnrealProjectService(Action<string> log)
 
     public void LaunchUnrealEngine(string uprojectPath)
     {
+        Log("Starting Unreal Engine");
+        
         Process.Start(new ProcessStartInfo
         {
             FileName = uprojectPath,
@@ -27,6 +30,8 @@ public class UnrealProjectService(Action<string> log)
             return;
         }
 
+        Log("Launching IDE");
+        
         Process.Start(new ProcessStartInfo
         {
             FileName = slnPath,
@@ -36,6 +41,8 @@ public class UnrealProjectService(Action<string> log)
 
     public void OpenInExplorer(string directory)
     {
+        Log("Opening in Explorer");
+        
         Process.Start(new ProcessStartInfo
         {
             FileName = directory,
@@ -43,7 +50,7 @@ public class UnrealProjectService(Action<string> log)
         });
     }
     
-    public async Task CleanRegenerateAndLaunchAsync(string uprojectPath)
+    public async Task RebuildAndLaunchAsync(string uprojectPath)
     {
         Log("Closing Unreal Editor...");
         KillUnrealEngine(GetProcesses());
