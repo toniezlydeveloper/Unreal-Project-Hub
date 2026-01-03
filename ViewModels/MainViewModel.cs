@@ -37,7 +37,6 @@ public class MainViewModel
     private async Task SafeRebuildAndLaunchAsync(UnrealProjectService service, ProjectEntry project)
     {
         ClearLogs();
-        Log("Starting operation...");
 
         try
         {

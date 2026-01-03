@@ -18,7 +18,7 @@ public partial class LogsOverlay
         nameof(Logs),
         typeof(ObservableCollection<string>),
         typeof(LogsOverlay),
-        new PropertyMetadata(null, RegisterLastLogRefresh)
+        new PropertyMetadata(null, RegisterLogsRefresh)
     );
 
     private const float ExpandedHeight = 160;
@@ -29,29 +29,29 @@ public partial class LogsOverlay
         InitializeComponent();
     }
 
-    private void RefreshLastLog(object? _, NotifyCollectionChangedEventArgs __)
+    private void RefreshLogs(object? _, NotifyCollectionChangedEventArgs __)
     {
-        RefreshLastLog();
+        RefreshLogs();
     }
 
-    private static void RegisterLastLogRefresh(DependencyObject dependency, DependencyPropertyChangedEventArgs arguments)
+    private static void RegisterLogsRefresh(DependencyObject dependency, DependencyPropertyChangedEventArgs arguments)
     {
         LogsOverlay control = (LogsOverlay)dependency;
 
         if (arguments.OldValue is ObservableCollection<string> oldLogs)
         {
-            oldLogs.CollectionChanged -= control.RefreshLastLog;
+            oldLogs.CollectionChanged -= control.RefreshLogs;
         }
 
         if (arguments.NewValue is ObservableCollection<string> newLogs)
         {
-            newLogs.CollectionChanged += control.RefreshLastLog;
+            newLogs.CollectionChanged += control.RefreshLogs;
         }
 
-        control.RefreshLastLog();
+        control.RefreshLogs();
     }
 
-    private void RefreshLastLog()
+    private void RefreshLogs()
     {
         if (Logs.Count == 0)
         {
@@ -62,6 +62,16 @@ public partial class LogsOverlay
 
         LastLogText.Text = Logs.Last();
         LogsList.ItemsSource = Logs;
+        
+        if (!_isExpanded)
+        {
+            return;
+        }
+
+        Dispatcher.BeginInvoke(() =>
+        {
+            LogsScrollViewer.ScrollToEnd();
+        }, System.Windows.Threading.DispatcherPriority.Background);
     }
 
     private void ToggleOverlayExpansion(object _, RoutedEventArgs __)
