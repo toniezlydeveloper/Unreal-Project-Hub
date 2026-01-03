@@ -1,4 +1,4 @@
-﻿namespace UnrealProjectHub;
+﻿namespace UnrealProjectHub.Models;
 
 public class ProjectEntry
 {

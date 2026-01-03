@@ -3,8 +3,9 @@ using System.IO;
 using System.Text.Json;
 using Microsoft.Win32;
 
-namespace UnrealProjectHub;
-public class UnrealProjectService(Action<string> log)
+namespace UnrealProjectHub.Services;
+
+public class UnrealToolchain(Action<string> log, Action clearLogs)
 {
     private static readonly string[] DirectoriesToClean = [".vs", "Binaries", "Intermediate", "DerivedDataCache"];
 
@@ -13,6 +14,9 @@ public class UnrealProjectService(Action<string> log)
 
     public void LaunchUnrealEngine(string uprojectPath)
     {
+        ClearLogs();
+        Log("Starting Unreal Engine");
+        
         Process.Start(new ProcessStartInfo
         {
             FileName = uprojectPath,
@@ -27,6 +31,9 @@ public class UnrealProjectService(Action<string> log)
             return;
         }
 
+        ClearLogs();
+        Log("Launching IDE");
+        
         Process.Start(new ProcessStartInfo
         {
             FileName = slnPath,
@@ -36,6 +43,9 @@ public class UnrealProjectService(Action<string> log)
 
     public void OpenInExplorer(string directory)
     {
+        ClearLogs();
+        Log("Opening in Explorer");
+        
         Process.Start(new ProcessStartInfo
         {
             FileName = directory,
@@ -43,8 +53,9 @@ public class UnrealProjectService(Action<string> log)
         });
     }
     
-    public async Task CleanRegenerateAndLaunchAsync(string uprojectPath)
+    public async Task RebuildAndLaunchAsync(string uprojectPath)
     {
+        ClearLogs();
         Log("Closing Unreal Editor...");
         KillUnrealEngine(GetProcesses());
         
@@ -71,7 +82,7 @@ public class UnrealProjectService(Action<string> log)
     {
         Stopwatch stopwatch = Stopwatch.StartNew();
         
-        while (GetProcesses().Any())
+        while (GetProcesses().Length != 0)
         {
             if (HasTimedOut(stopwatch))
             {
@@ -216,5 +227,7 @@ public class UnrealProjectService(Action<string> log)
         throw new Exception($"Unable to resolve Unreal Engine {engineId}");
     }
 
-    private void Log(string msg) => log(msg);
+    private void Log(string message) => log(message);
+    
+    private void ClearLogs() => clearLogs();
 }
