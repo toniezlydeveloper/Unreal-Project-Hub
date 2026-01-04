@@ -78,70 +78,66 @@
                 </Setter.Value>
             </Setter>
         </Style>
-
+        
         <Style TargetType="ScrollBar">
-    <Setter Property="Width" Value="8"/>
-    <Setter Property="MinWidth" Value="8"/>
-    <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Width" Value="8" />
+            <Setter Property="MinWidth" Value="8" />
+            <Setter Property="Background" Value="Transparent" />
 
-    <Setter Property="Template">
-        <Setter.Value>
-            <ControlTemplate TargetType="ScrollBar">
-                <Border Background="#1E1E1E"
-                        CornerRadius="4"
-                        Padding="1">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ScrollBar">
+                        <Border Background="#1E1E1E"
+                                CornerRadius="4"
+                                Padding="1">
 
-                    <!-- Track must be inside the Border -->
-                    <Track x:Name="PART_Track"
-                           IsDirectionReversed="True">
+                            <Track x:Name="PART_Track"
+                                   IsDirectionReversed="True">
 
-                        <!-- Hidden decrease button -->
-                        <Track.DecreaseRepeatButton>
-                            <RepeatButton
-                                Command="ScrollBar.PageUpCommand"
-                                Opacity="0"
-                                IsHitTestVisible="False"/>
-                        </Track.DecreaseRepeatButton>
+                                <Track.DecreaseRepeatButton>
+                                    <RepeatButton
+                                        Command="ScrollBar.PageUpCommand"
+                                        Opacity="0"
+                                        IsHitTestVisible="False" />
+                                </Track.DecreaseRepeatButton>
 
-                        <!-- Thumb -->
-                        <Track.Thumb>
-                            <Thumb>
-                                <Thumb.Template>
-                                    <ControlTemplate TargetType="Thumb">
-                                        <Border x:Name="ThumbBorder"
-                                                Background="#3A3A3A"
-                                                CornerRadius="3"/>
-                                        <ControlTemplate.Triggers>
-                                            <Trigger Property="IsMouseOver" Value="True">
-                                                <Setter TargetName="ThumbBorder"
-                                                        Property="Background"
-                                                        Value="#5A5A5A"/>
-                                            </Trigger>
-                                            <Trigger Property="IsDragging" Value="True">
-                                                <Setter TargetName="ThumbBorder"
-                                                        Property="Background"
-                                                        Value="#7A7A7A"/>
-                                            </Trigger>
-                                        </ControlTemplate.Triggers>
-                                    </ControlTemplate>
-                                </Thumb.Template>
-                            </Thumb>
-                        </Track.Thumb>
+                                <Track.Thumb>
+                                    <Thumb>
+                                        <Thumb.Template>
+                                            <ControlTemplate TargetType="Thumb">
+                                                <Border x:Name="ThumbBorder"
+                                                        Background="#3A3A3A"
+                                                        CornerRadius="3" />
+                                                <ControlTemplate.Triggers>
+                                                    <Trigger Property="IsMouseOver" Value="True">
+                                                        <Setter TargetName="ThumbBorder"
+                                                                Property="Background"
+                                                                Value="#5A5A5A" />
+                                                    </Trigger>
+                                                    <Trigger Property="IsDragging" Value="True">
+                                                        <Setter TargetName="ThumbBorder"
+                                                                Property="Background"
+                                                                Value="#7A7A7A" />
+                                                    </Trigger>
+                                                </ControlTemplate.Triggers>
+                                            </ControlTemplate>
+                                        </Thumb.Template>
+                                    </Thumb>
+                                </Track.Thumb>
 
-                        <!-- Hidden increase button -->
-                        <Track.IncreaseRepeatButton>
-                            <RepeatButton
-                                Command="ScrollBar.PageDownCommand"
-                                Opacity="0"
-                                IsHitTestVisible="False"/>
-                        </Track.IncreaseRepeatButton>
+                                <Track.IncreaseRepeatButton>
+                                    <RepeatButton
+                                        Command="ScrollBar.PageDownCommand"
+                                        Opacity="0"
+                                        IsHitTestVisible="False" />
+                                </Track.IncreaseRepeatButton>
 
-                    </Track>
-                </Border>
-            </ControlTemplate>
-        </Setter.Value>
-    </Setter>
-</Style>
+                            </Track>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
 
     </Application.Resources>
 
