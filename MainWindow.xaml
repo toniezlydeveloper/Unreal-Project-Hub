@@ -8,12 +8,12 @@
         Height="420"
         Background="#1E1E1E"
         FontFamily="Segoe UI">
-    
+
     <Grid Margin="10">
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
             </Grid.RowDefinitions>
 
             <controls:ProjectsHeader
@@ -25,22 +25,24 @@
                           Margin="0, 0, 0, 32">
 
                 <ItemsControl ItemsSource="{Binding Projects}">
-                
+
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
                             <Grid Margin="0,0,0,4">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*" />
-                                    <ColumnDefinition Width="Auto" />
                                 </Grid.ColumnDefinitions>
 
                                 <controls:ProjectRowView
                                     Grid.Column="0"
-                                    Margin="0,6,8,2"
+                                    Margin="0,6,0,2"
                                     ClickCommand="{Binding DataContext.OpenUnrealEngineCommand, RelativeSource={RelativeSource AncestorType=Window}}" />
 
                                 <controls:ProjectOptionsButton
-                                    Grid.Column="1"
+                                    Grid.Column="0"
+                                    HorizontalAlignment="Right"
+                                    VerticalAlignment="Center"
+                                    Margin="0,6,10,2"
                                     OpenIdeCommand="{Binding DataContext.OpenIdeCommand, RelativeSource={RelativeSource AncestorType=Window}}"
                                     OpenInExplorerCommand="{Binding DataContext.OpenInExplorerCommand, RelativeSource={RelativeSource AncestorType=Window}}"
                                     RebuildAndLaunchCommand="{Binding DataContext.RebuildAndLaunchCommand, RelativeSource={RelativeSource AncestorType=Window}}"
@@ -48,7 +50,7 @@
                             </Grid>
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
-                
+
                 </ItemsControl>
 
             </ScrollViewer>
